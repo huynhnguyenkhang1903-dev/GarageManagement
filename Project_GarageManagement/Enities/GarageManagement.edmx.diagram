@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="422c3649d339431ea2b99e1e66ebcc8a" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="GarageManagementModel.CT_DICHVU" Width="1.5" PointX="7.5" PointY="3.75" />
+        <EntityTypeShape EntityType="GarageManagementModel.CT_PHUTUNG" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="GarageManagementModel.DICHVU" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="GarageManagementModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GarageManagementModel.NHANVIEN" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="GarageManagementModel.PHIEUSUACHUA" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="GarageManagementModel.PHUTUNG" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="GarageManagementModel.XE" Width="1.5" PointX="3" PointY="3.5" />
+        <AssociationConnector Association="GarageManagementModel.FK__CT_DICHVU__MaDV__4AB81AF0" />
+        <AssociationConnector Association="GarageManagementModel.FK__CT_DICHVU__MaPhi__49C3F6B7" />
+        <AssociationConnector Association="GarageManagementModel.FK__CT_PHUTUN__MaPhi__4E88ABD4" />
+        <AssociationConnector Association="GarageManagementModel.FK__CT_PHUTUNG__MaPT__4F7CD00D" />
+        <AssociationConnector Association="GarageManagementModel.FK__XE__MaKH__3A81B327" />
+        <AssociationConnector Association="GarageManagementModel.FK__PHIEUSUACH__MaNV__45F365D3" />
+        <AssociationConnector Association="GarageManagementModel.FK__PHIEUSUACH__MaXe__44FF419A" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

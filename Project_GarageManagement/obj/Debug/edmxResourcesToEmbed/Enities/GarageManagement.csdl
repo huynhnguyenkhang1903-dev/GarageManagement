@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GarageManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GarageManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CT_DICHVU" EntityType="GarageManagementModel.CT_DICHVU" />
+    <EntitySet Name="CT_PHUTUNG" EntityType="GarageManagementModel.CT_PHUTUNG" />
+    <EntitySet Name="DICHVUs" EntityType="GarageManagementModel.DICHVU" />
+    <EntitySet Name="KHACHHANGs" EntityType="GarageManagementModel.KHACHHANG" />
+    <EntitySet Name="NHANVIENs" EntityType="GarageManagementModel.NHANVIEN" />
+    <EntitySet Name="PHIEUSUACHUAs" EntityType="GarageManagementModel.PHIEUSUACHUA" />
+    <EntitySet Name="PHUTUNGs" EntityType="GarageManagementModel.PHUTUNG" />
+    <EntitySet Name="XEs" EntityType="GarageManagementModel.XE" />
+    <AssociationSet Name="FK__CT_DICHVU__MaDV__4AB81AF0" Association="GarageManagementModel.FK__CT_DICHVU__MaDV__4AB81AF0">
+      <End Role="DICHVU" EntitySet="DICHVUs" />
+      <End Role="CT_DICHVU" EntitySet="CT_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_DICHVU__MaPhi__49C3F6B7" Association="GarageManagementModel.FK__CT_DICHVU__MaPhi__49C3F6B7">
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+      <End Role="CT_DICHVU" EntitySet="CT_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_PHUTUN__MaPhi__4E88ABD4" Association="GarageManagementModel.FK__CT_PHUTUN__MaPhi__4E88ABD4">
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+      <End Role="CT_PHUTUNG" EntitySet="CT_PHUTUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_PHUTUNG__MaPT__4F7CD00D" Association="GarageManagementModel.FK__CT_PHUTUNG__MaPT__4F7CD00D">
+      <End Role="PHUTUNG" EntitySet="PHUTUNGs" />
+      <End Role="CT_PHUTUNG" EntitySet="CT_PHUTUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__XE__MaKH__3A81B327" Association="GarageManagementModel.FK__XE__MaKH__3A81B327">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="XE" EntitySet="XEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUSUACH__MaNV__45F365D3" Association="GarageManagementModel.FK__PHIEUSUACH__MaNV__45F365D3">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUSUACH__MaXe__44FF419A" Association="GarageManagementModel.FK__PHIEUSUACH__MaXe__44FF419A">
+      <End Role="XE" EntitySet="XEs" />
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUAs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CT_DICHVU">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaPhieu" Type="Int32" Nullable="false" />
+    <Property Name="MaDV" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="DICHVU" Relationship="GarageManagementModel.FK__CT_DICHVU__MaDV__4AB81AF0" FromRole="CT_DICHVU" ToRole="DICHVU" />
+    <NavigationProperty Name="PHIEUSUACHUA" Relationship="GarageManagementModel.FK__CT_DICHVU__MaPhi__49C3F6B7" FromRole="CT_DICHVU" ToRole="PHIEUSUACHUA" />
+  </EntityType>
+  <EntityType Name="CT_PHUTUNG">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPhieu" Type="Int32" Nullable="false" />
+    <Property Name="MaPT" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHIEUSUACHUA" Relationship="GarageManagementModel.FK__CT_PHUTUN__MaPhi__4E88ABD4" FromRole="CT_PHUTUNG" ToRole="PHIEUSUACHUA" />
+    <NavigationProperty Name="PHUTUNG" Relationship="GarageManagementModel.FK__CT_PHUTUNG__MaPT__4F7CD00D" FromRole="CT_PHUTUNG" ToRole="PHUTUNG" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDV" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="CT_DICHVU" Relationship="GarageManagementModel.FK__CT_DICHVU__MaDV__4AB81AF0" FromRole="DICHVU" ToRole="CT_DICHVU" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="XEs" Relationship="GarageManagementModel.FK__XE__MaKH__3A81B327" FromRole="KHACHHANG" ToRole="XE" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Luong" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="PHIEUSUACHUAs" Relationship="GarageManagementModel.FK__PHIEUSUACH__MaNV__45F365D3" FromRole="NHANVIEN" ToRole="PHIEUSUACHUA" />
+  </EntityType>
+  <EntityType Name="PHIEUSUACHUA">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+    </Key>
+    <Property Name="MaPhieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayLap" Type="DateTime" Precision="0" />
+    <Property Name="MaXe" Type="Int32" />
+    <Property Name="MaNV" Type="Int32" />
+    <Property Name="TongTien" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="CT_DICHVU" Relationship="GarageManagementModel.FK__CT_DICHVU__MaPhi__49C3F6B7" FromRole="PHIEUSUACHUA" ToRole="CT_DICHVU" />
+    <NavigationProperty Name="CT_PHUTUNG" Relationship="GarageManagementModel.FK__CT_PHUTUN__MaPhi__4E88ABD4" FromRole="PHIEUSUACHUA" ToRole="CT_PHUTUNG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="GarageManagementModel.FK__PHIEUSUACH__MaNV__45F365D3" FromRole="PHIEUSUACHUA" ToRole="NHANVIEN" />
+    <NavigationProperty Name="XE" Relationship="GarageManagementModel.FK__PHIEUSUACH__MaXe__44FF419A" FromRole="PHIEUSUACHUA" ToRole="XE" />
+  </EntityType>
+  <EntityType Name="PHUTUNG">
+    <Key>
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SoLuongTon" Type="Int32" />
+    <NavigationProperty Name="CT_PHUTUNG" Relationship="GarageManagementModel.FK__CT_PHUTUNG__MaPT__4F7CD00D" FromRole="PHUTUNG" ToRole="CT_PHUTUNG" />
+  </EntityType>
+  <EntityType Name="XE">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BienSo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TenXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HangXe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NamSX" Type="Int32" />
+    <Property Name="MaKH" Type="Int32" />
+    <NavigationProperty Name="KHACHHANG" Relationship="GarageManagementModel.FK__XE__MaKH__3A81B327" FromRole="XE" ToRole="KHACHHANG" />
+    <NavigationProperty Name="PHIEUSUACHUAs" Relationship="GarageManagementModel.FK__PHIEUSUACH__MaXe__44FF419A" FromRole="XE" ToRole="PHIEUSUACHUA" />
+  </EntityType>
+  <Association Name="FK__CT_DICHVU__MaDV__4AB81AF0">
+    <End Type="GarageManagementModel.DICHVU" Role="DICHVU" Multiplicity="1" />
+    <End Type="GarageManagementModel.CT_DICHVU" Role="CT_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="MaDV" />
+      </Principal>
+      <Dependent Role="CT_DICHVU">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_DICHVU__MaPhi__49C3F6B7">
+    <End Type="GarageManagementModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="1" />
+    <End Type="GarageManagementModel.CT_DICHVU" Role="CT_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaPhieu" />
+      </Principal>
+      <Dependent Role="CT_DICHVU">
+        <PropertyRef Name="MaPhieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_PHUTUN__MaPhi__4E88ABD4">
+    <End Type="GarageManagementModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="1" />
+    <End Type="GarageManagementModel.CT_PHUTUNG" Role="CT_PHUTUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaPhieu" />
+      </Principal>
+      <Dependent Role="CT_PHUTUNG">
+        <PropertyRef Name="MaPhieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_PHUTUNG__MaPT__4F7CD00D">
+    <End Type="GarageManagementModel.PHUTUNG" Role="PHUTUNG" Multiplicity="1" />
+    <End Type="GarageManagementModel.CT_PHUTUNG" Role="CT_PHUTUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHUTUNG">
+        <PropertyRef Name="MaPT" />
+      </Principal>
+      <Dependent Role="CT_PHUTUNG">
+        <PropertyRef Name="MaPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__XE__MaKH__3A81B327">
+    <End Type="GarageManagementModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="GarageManagementModel.XE" Role="XE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="XE">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUSUACH__MaNV__45F365D3">
+    <End Type="GarageManagementModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+    <End Type="GarageManagementModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUSUACH__MaXe__44FF419A">
+    <End Type="GarageManagementModel.XE" Role="XE" Multiplicity="0..1" />
+    <End Type="GarageManagementModel.PHIEUSUACHUA" Role="PHIEUSUACHUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XE">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

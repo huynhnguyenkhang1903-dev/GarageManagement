@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GarageManagementModelStoreContainer" CdmEntityContainer="GarageManagementEntities">
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="GarageManagementModel.Car">
+        <MappingFragment StoreEntitySet="Cars">
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CORRECTION_SLIP">
+      <EntityTypeMapping TypeName="GarageManagementModel.CORRECTION_SLIP">
+        <MappingFragment StoreEntitySet="CORRECTION_SLIP">
+          <ScalarProperty Name="EditVoucherId" ColumnName="EditVoucherId" />
+          <ScalarProperty Name="DateOfEstablishment" ColumnName="DateOfEstablishment" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REVISIONFORMs">
+      <EntityTypeMapping TypeName="GarageManagementModel.REVISIONFORM">
+        <MappingFragment StoreEntitySet="REVISIONFORM">
+          <ScalarProperty Name="EditVoucherId" ColumnName="EditVoucherId" />
+          <ScalarProperty Name="DateOfEstablishment" ColumnName="DateOfEstablishment" />
+          <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICE_DETAILS">
+      <EntityTypeMapping TypeName="GarageManagementModel.SERVICE_DETAILS">
+        <MappingFragment StoreEntitySet="SERVICE_DETAILS">
+          <ScalarProperty Name="EditVoucherId" ColumnName="EditVoucherId" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MakeMoney" ColumnName="MakeMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPAREPARTS">
+      <EntityTypeMapping TypeName="GarageManagementModel.SPAREPART">
+        <MappingFragment StoreEntitySet="SPAREPARTS">
+          <ScalarProperty Name="PartsId" ColumnName="PartsId" />
+          <ScalarProperty Name="PartName" ColumnName="PartName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="ExistingQuantity" ColumnName="ExistingQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STALLs">
+      <EntityTypeMapping TypeName="GarageManagementModel.STALL">
+        <MappingFragment StoreEntitySet="STALL">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Wage" ColumnName="Wage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="GarageManagementModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICEs">
+      <EntityTypeMapping TypeName="GarageManagementModel.SERVICE">
+        <MappingFragment StoreEntitySet="SERVICE">
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
