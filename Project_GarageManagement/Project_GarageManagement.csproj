@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{155B7436-06C1-418B-A5E2-7C259205A15E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project_GarageManagement</RootNamespace>
+    <AssemblyName>Project_GarageManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enities\CT_DICHVU.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\CT_PHUTUNG.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\DICHVU.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\KHACHHANG.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\Login\Trang chủ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Enities\Login\Trang chủ.Designer.cs">
+      <DependentUpon>Trang chủ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\Login\Đăng nhập hệ thống.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Enities\Login\Đăng nhập hệ thống.Designer.cs">
+      <DependentUpon>Đăng nhập hệ thống.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\NHANVIEN.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\PHIEUSUACHUA.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\PHUTUNG.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\XE.cs">
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormCongViec1\ChiTietDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCongViec1\ChiTietDichVu.Designer.cs">
+      <DependentUpon>ChiTietDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCongViec1\ChiTietPhuTung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCongViec1\ChiTietPhuTung.Designer.cs">
+      <DependentUpon>ChiTietPhuTung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCongViec1\DichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCongViec1\DichVu.Designer.cs">
+      <DependentUpon>DichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCongVIec2\HoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCongVIec2\HoaDon.Designer.cs">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\KhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\KhachHang.Designer.cs">
+      <DependentUpon>KhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\NhanVien.Designer.cs">
+      <DependentUpon>NhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCongViec1\PhuTung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCongViec1\PhuTung.Designer.cs">
+      <DependentUpon>PhuTung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Cars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Cars.Designer.cs">
+      <DependentUpon>Cars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\GarageManagement.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GarageManagement.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\GarageManagement.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GarageManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enities\GarageManagement.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GarageManagement.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Enities\Login\Trang chủ.resx">
+      <DependentUpon>Trang chủ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Enities\Login\Đăng nhập hệ thống.resx">
+      <DependentUpon>Đăng nhập hệ thống.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCongViec1\ChiTietDichVu.resx">
+      <DependentUpon>ChiTietDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCongViec1\ChiTietPhuTung.resx">
+      <DependentUpon>ChiTietPhuTung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCongViec1\DichVu.resx">
+      <DependentUpon>DichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCongVIec2\HoaDon.resx">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\KhachHang.resx">
+      <DependentUpon>KhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NhanVien.resx">
+      <DependentUpon>NhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCongViec1\PhuTung.resx">
+      <DependentUpon>PhuTung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Cars.resx">
+      <DependentUpon>Cars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="Enities\GarageManagement.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GarageManagement.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Enities\GarageManagement.edmx.diagram">
+      <DependentUpon>GarageManagement.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Enities\GarageManagement.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GarageManagement.edmx</DependentUpon>
+      <LastGenOutput>GarageManagement.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Enities\GarageManagement.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GarageManagement.edmx</DependentUpon>
+      <LastGenOutput>GarageManagement.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

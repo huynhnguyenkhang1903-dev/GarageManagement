@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GarageManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CT_DICHVU">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaPhieu" Type="int" Nullable="false" />
+    <Property Name="MaDV" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="CT_PHUTUNG">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPhieu" Type="int" Nullable="false" />
+    <Property Name="MaPT" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MaDV" />
+    </Key>
+    <Property Name="MaDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDV" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="SoDienThoai" Type="varchar" MaxLength="20" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="varchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="70" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoDienThoai" Type="nvarchar" MaxLength="20" />
+    <Property Name="Luong" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PHIEUSUACHUA">
+    <Key>
+      <PropertyRef Name="MaPhieu" />
+    </Key>
+    <Property Name="MaPhieu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayLap" Type="date" />
+    <Property Name="MaXe" Type="int" />
+    <Property Name="MaNV" Type="int" />
+    <Property Name="TongTien" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PHUTUNG">
+    <Key>
+      <PropertyRef Name="MaPT" />
+    </Key>
+    <Property Name="MaPT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenPT" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SoLuongTon" Type="int" />
+  </EntityType>
+  <EntityType Name="XE">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BienSo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="HangXe" Type="nvarchar" MaxLength="50" />
+    <Property Name="NamSX" Type="int" />
+    <Property Name="MaKH" Type="int" />
+  </EntityType>
+  <Association Name="FK__CT_DICHVU__MaDV__4AB81AF0">
+    <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
+    <End Role="CT_DICHVU" Type="Self.CT_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="MaDV" />
+      </Principal>
+      <Dependent Role="CT_DICHVU">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_DICHVU__MaPhi__49C3F6B7">
+    <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="1" />
+    <End Role="CT_DICHVU" Type="Self.CT_DICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaPhieu" />
+      </Principal>
+      <Dependent Role="CT_DICHVU">
+        <PropertyRef Name="MaPhieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_PHUTUN__MaPhi__4E88ABD4">
+    <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="1" />
+    <End Role="CT_PHUTUNG" Type="Self.CT_PHUTUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaPhieu" />
+      </Principal>
+      <Dependent Role="CT_PHUTUNG">
+        <PropertyRef Name="MaPhieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CT_PHUTUNG__MaPT__4F7CD00D">
+    <End Role="PHUTUNG" Type="Self.PHUTUNG" Multiplicity="1" />
+    <End Role="CT_PHUTUNG" Type="Self.CT_PHUTUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHUTUNG">
+        <PropertyRef Name="MaPT" />
+      </Principal>
+      <Dependent Role="CT_PHUTUNG">
+        <PropertyRef Name="MaPT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUSUACH__MaNV__45F365D3">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUSUACH__MaXe__44FF419A">
+    <End Role="XE" Type="Self.XE" Multiplicity="0..1" />
+    <End Role="PHIEUSUACHUA" Type="Self.PHIEUSUACHUA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XE">
+        <PropertyRef Name="MaXe" />
+      </Principal>
+      <Dependent Role="PHIEUSUACHUA">
+        <PropertyRef Name="MaXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__XE__MaKH__3A81B327">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="XE" Type="Self.XE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="XE">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GarageManagementModelStoreContainer">
+    <EntitySet Name="CT_DICHVU" EntityType="Self.CT_DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CT_PHUTUNG" EntityType="Self.CT_PHUTUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUSUACHUA" EntityType="Self.PHIEUSUACHUA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHUTUNG" EntityType="Self.PHUTUNG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CT_DICHVU__MaDV__4AB81AF0" Association="Self.FK__CT_DICHVU__MaDV__4AB81AF0">
+      <End Role="DICHVU" EntitySet="DICHVU" />
+      <End Role="CT_DICHVU" EntitySet="CT_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_DICHVU__MaPhi__49C3F6B7" Association="Self.FK__CT_DICHVU__MaPhi__49C3F6B7">
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+      <End Role="CT_DICHVU" EntitySet="CT_DICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_PHUTUN__MaPhi__4E88ABD4" Association="Self.FK__CT_PHUTUN__MaPhi__4E88ABD4">
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+      <End Role="CT_PHUTUNG" EntitySet="CT_PHUTUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CT_PHUTUNG__MaPT__4F7CD00D" Association="Self.FK__CT_PHUTUNG__MaPT__4F7CD00D">
+      <End Role="PHUTUNG" EntitySet="PHUTUNG" />
+      <End Role="CT_PHUTUNG" EntitySet="CT_PHUTUNG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUSUACH__MaNV__45F365D3" Association="Self.FK__PHIEUSUACH__MaNV__45F365D3">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUSUACH__MaXe__44FF419A" Association="Self.FK__PHIEUSUACH__MaXe__44FF419A">
+      <End Role="XE" EntitySet="XE" />
+      <End Role="PHIEUSUACHUA" EntitySet="PHIEUSUACHUA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__XE__MaKH__3A81B327" Association="Self.FK__XE__MaKH__3A81B327">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="XE" EntitySet="XE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GarageManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+    <Property Name="Year" Type="int" />
+    <Property Name="CustomerId" Type="int" />
+  </EntityType>
+  <EntityType Name="CORRECTION_SLIP">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateOfEstablishment" Type="date" />
+    <Property Name="VehicleId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="70" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="varchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="REVISIONFORM">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateOfEstablishment" Type="date" />
+    <Property Name="VehicleId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SERVICE">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SERVICE_DETAILS">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="MakeMoney" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SPAREPARTS">
+    <Key>
+      <PropertyRef Name="PartsId" />
+    </Key>
+    <Property Name="PartsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ExistingQuantity" Type="int" />
+  </EntityType>
+  <EntityType Name="STALL">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="70" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Wage" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK__CAR__CustomerId__3A81B327">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CORRECTIO__Emplo__656C112C">
+    <End Role="STALL" Type="Self.STALL" Multiplicity="0..1" />
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STALL">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="CORRECTION_SLIP">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CORRECTIO__Vehic__6477ECF3">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="CORRECTION_SLIP">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REVISIONF__Emplo__45F365D3">
+    <End Role="STALL" Type="Self.STALL" Multiplicity="0..1" />
+    <End Role="REVISIONFORM" Type="Self.REVISIONFORM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STALL">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="REVISIONFORM">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REVISIONF__Vehic__44FF419A">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="REVISIONFORM" Type="Self.REVISIONFORM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="REVISIONFORM">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SERVICE_D__EditV__693CA210">
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="1" />
+    <End Role="SERVICE_DETAILS" Type="Self.SERVICE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORRECTION_SLIP">
+        <PropertyRef Name="EditVoucherId" />
+      </Principal>
+      <Dependent Role="SERVICE_DETAILS">
+        <PropertyRef Name="EditVoucherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SERVICE_D__Servi__6A30C649">
+    <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="1" />
+    <End Role="SERVICE_DETAILS" Type="Self.SERVICE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICE">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="SERVICE_DETAILS">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GarageManagementModelStoreContainer">
+    <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CORRECTION_SLIP" EntityType="Self.CORRECTION_SLIP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REVISIONFORM" EntityType="Self.REVISIONFORM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SERVICE_DETAILS" EntityType="Self.SERVICE_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SPAREPARTS" EntityType="Self.SPAREPARTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STALL" EntityType="Self.STALL" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CAR__CustomerId__3A81B327" Association="Self.FK__CAR__CustomerId__3A81B327">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CORRECTIO__Emplo__656C112C" Association="Self.FK__CORRECTIO__Emplo__656C112C">
+      <End Role="STALL" EntitySet="STALL" />
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CORRECTIO__Vehic__6477ECF3" Association="Self.FK__CORRECTIO__Vehic__6477ECF3">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REVISIONF__Emplo__45F365D3" Association="Self.FK__REVISIONF__Emplo__45F365D3">
+      <End Role="STALL" EntitySet="STALL" />
+      <End Role="REVISIONFORM" EntitySet="REVISIONFORM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REVISIONF__Vehic__44FF419A" Association="Self.FK__REVISIONF__Vehic__44FF419A">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="REVISIONFORM" EntitySet="REVISIONFORM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SERVICE_D__EditV__693CA210" Association="Self.FK__SERVICE_D__EditV__693CA210">
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+      <End Role="SERVICE_DETAILS" EntitySet="SERVICE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SERVICE_D__Servi__6A30C649" Association="Self.FK__SERVICE_D__Servi__6A30C649">
+      <End Role="SERVICE" EntitySet="SERVICE" />
+      <End Role="SERVICE_DETAILS" EntitySet="SERVICE_DETAILS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

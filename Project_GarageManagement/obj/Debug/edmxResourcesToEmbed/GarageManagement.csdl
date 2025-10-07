@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GarageManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="VehicleId" />
+    </Key>
+    <Property Name="VehicleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LicensePlate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="CustomerId" Type="Int32" />
+    <NavigationProperty Name="CORRECTION_SLIP" Relationship="Self.FK__CORRECTIO__Vehic__6477ECF3" FromRole="Cars" ToRole="CORRECTION_SLIP" />
+    <NavigationProperty Name="REVISIONFORMs" Relationship="Self.FK__REVISIONF__Vehic__44FF419A" FromRole="Cars" ToRole="REVISIONFORM" />
+    <NavigationProperty Name="CUSTOMER" Relationship="GarageManagementModel.FK__CAR__CustomerId__3A81B327" FromRole="Car" ToRole="CUSTOMER" />
+  </EntityType>
+  <EntityType Name="CORRECTION_SLIP">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOfEstablishment" Type="DateTime" Precision="0" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Car" Relationship="Self.FK__CORRECTIO__Vehic__6477ECF3" FromRole="CORRECTION_SLIP" ToRole="Cars" />
+    <NavigationProperty Name="STALL" Relationship="Self.FK__CORRECTIO__Emplo__656C112C" FromRole="CORRECTION_SLIP" ToRole="STALL" />
+    <NavigationProperty Name="SERVICE_DETAILS" Relationship="Self.FK__SERVICE_D__EditV__693CA210" FromRole="CORRECTION_SLIP" ToRole="SERVICE_DETAILS" />
+  </EntityType>
+  <EntityType Name="REVISIONFORM">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateOfEstablishment" Type="DateTime" Precision="0" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Car" Relationship="Self.FK__REVISIONF__Vehic__44FF419A" FromRole="REVISIONFORM" ToRole="Cars" />
+    <NavigationProperty Name="STALL" Relationship="Self.FK__REVISIONF__Emplo__45F365D3" FromRole="REVISIONFORM" ToRole="STALL" />
+  </EntityType>
+  <EntityType Name="SERVICE_DETAILS">
+    <Key>
+      <PropertyRef Name="EditVoucherId" />
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="EditVoucherId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="MakeMoney" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="CORRECTION_SLIP" Relationship="Self.FK__SERVICE_D__EditV__693CA210" FromRole="SERVICE_DETAILS" ToRole="CORRECTION_SLIP" />
+    <NavigationProperty Name="SERVICE" Relationship="GarageManagementModel.FK__SERVICE_D__Servi__6A30C649" FromRole="SERVICE_DETAILS" ToRole="SERVICE" />
+  </EntityType>
+  <EntityType Name="SPAREPART">
+    <Key>
+      <PropertyRef Name="PartsId" />
+    </Key>
+    <Property Name="PartsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ExistingQuantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="STALL">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Wage" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="CORRECTION_SLIP" Relationship="Self.FK__CORRECTIO__Emplo__656C112C" FromRole="STALL" ToRole="CORRECTION_SLIP" />
+    <NavigationProperty Name="REVISIONFORMs" Relationship="Self.FK__REVISIONF__Emplo__45F365D3" FromRole="STALL" ToRole="REVISIONFORM" />
+  </EntityType>
+  <Association Name="FK__CORRECTIO__Vehic__6477ECF3">
+    <End Role="Cars" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="CORRECTION_SLIP">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REVISIONF__Vehic__44FF419A">
+    <End Role="Cars" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="REVISIONFORM" Type="Self.REVISIONFORM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="VehicleId" />
+      </Principal>
+      <Dependent Role="REVISIONFORM">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CORRECTIO__Emplo__656C112C">
+    <End Role="STALL" Type="Self.STALL" Multiplicity="0..1" />
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STALL">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="CORRECTION_SLIP">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SERVICE_D__EditV__693CA210">
+    <End Role="CORRECTION_SLIP" Type="Self.CORRECTION_SLIP" Multiplicity="1" />
+    <End Role="SERVICE_DETAILS" Type="Self.SERVICE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CORRECTION_SLIP">
+        <PropertyRef Name="EditVoucherId" />
+      </Principal>
+      <Dependent Role="SERVICE_DETAILS">
+        <PropertyRef Name="EditVoucherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REVISIONF__Emplo__45F365D3">
+    <End Role="STALL" Type="Self.STALL" Multiplicity="0..1" />
+    <End Role="REVISIONFORM" Type="Self.REVISIONFORM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STALL">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="REVISIONFORM">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GarageManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="CORRECTION_SLIP" EntityType="Self.CORRECTION_SLIP" />
+    <EntitySet Name="REVISIONFORMs" EntityType="Self.REVISIONFORM" />
+    <EntitySet Name="SERVICE_DETAILS" EntityType="Self.SERVICE_DETAILS" />
+    <EntitySet Name="SPAREPARTS" EntityType="Self.SPAREPART" />
+    <EntitySet Name="STALLs" EntityType="Self.STALL" />
+    <AssociationSet Name="FK__CORRECTIO__Vehic__6477ECF3" Association="Self.FK__CORRECTIO__Vehic__6477ECF3">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REVISIONF__Vehic__44FF419A" Association="Self.FK__REVISIONF__Vehic__44FF419A">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="REVISIONFORM" EntitySet="REVISIONFORMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CORRECTIO__Emplo__656C112C" Association="Self.FK__CORRECTIO__Emplo__656C112C">
+      <End Role="STALL" EntitySet="STALLs" />
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SERVICE_D__EditV__693CA210" Association="Self.FK__SERVICE_D__EditV__693CA210">
+      <End Role="CORRECTION_SLIP" EntitySet="CORRECTION_SLIP" />
+      <End Role="SERVICE_DETAILS" EntitySet="SERVICE_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REVISIONF__Emplo__45F365D3" Association="Self.FK__REVISIONF__Emplo__45F365D3">
+      <End Role="STALL" EntitySet="STALLs" />
+      <End Role="REVISIONFORM" EntitySet="REVISIONFORMs" />
+    </AssociationSet>
+    <EntitySet Name="CUSTOMERs" EntityType="GarageManagementModel.CUSTOMER" />
+    <AssociationSet Name="FK__CAR__CustomerId__3A81B327" Association="GarageManagementModel.FK__CAR__CustomerId__3A81B327">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <EntitySet Name="SERVICEs" EntityType="GarageManagementModel.SERVICE" />
+    <AssociationSet Name="FK__SERVICE_D__Servi__6A30C649" Association="GarageManagementModel.FK__SERVICE_D__Servi__6A30C649">
+      <End Role="SERVICE" EntitySet="SERVICEs" />
+      <End Role="SERVICE_DETAILS" EntitySet="SERVICE_DETAILS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cars" Relationship="GarageManagementModel.FK__CAR__CustomerId__3A81B327" FromRole="CUSTOMER" ToRole="Car" />
+  </EntityType>
+  <Association Name="FK__CAR__CustomerId__3A81B327">
+    <End Type="GarageManagementModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="GarageManagementModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SERVICE">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="SERVICE_DETAILS" Relationship="GarageManagementModel.FK__SERVICE_D__Servi__6A30C649" FromRole="SERVICE" ToRole="SERVICE_DETAILS" />
+  </EntityType>
+  <Association Name="FK__SERVICE_D__Servi__6A30C649">
+    <End Type="GarageManagementModel.SERVICE" Role="SERVICE" Multiplicity="1" />
+    <End Type="GarageManagementModel.SERVICE_DETAILS" Role="SERVICE_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICE">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="SERVICE_DETAILS">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
